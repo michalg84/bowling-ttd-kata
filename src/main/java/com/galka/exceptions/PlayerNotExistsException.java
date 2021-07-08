@@ -1,4 +1,4 @@
-package com.galka.controler;
+package com.galka.exceptions;
 
 public class PlayerNotExistsException extends RuntimeException {
 
