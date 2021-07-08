@@ -5,13 +5,24 @@ import java.util.Objects;
 public class Player {
 
     private final String name;
+    private int score = 0;
+    private int rollsCount = 0;
 
     public Player(String name) {
         this.name = Objects.requireNonNull(name);
     }
 
+    public void addScore(int score) {
+        this.score += score;
+        this.rollsCount++;
+    }
+
     public String getName() {
         return name;
+    }
+
+    int getScore() {
+        return score;
     }
 
     @Override
@@ -19,7 +30,7 @@ public class Player {
         if (this == o) return true;
         if (!(o instanceof Player)) return false;
 
-        Player player = (Player) o;
+        var player = (Player) o;
 
         return name.equals(player.name);
     }
@@ -28,4 +39,8 @@ public class Player {
     public int hashCode() {
         return name.hashCode();
     }
+
+//    public FrameScore getLastScore() {
+//
+//    }
 }
