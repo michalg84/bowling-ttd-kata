@@ -1,5 +1,8 @@
-package com.galka.controler;
+package com.galka.creator;
 
+import com.galka.exceptions.NoPlayersException;
+import com.galka.exceptions.PlayerExistsExcption;
+import com.galka.exceptions.PlayerNotExistsException;
 import com.galka.game.Game;
 import com.galka.game.Player;
 import java.util.ArrayList;

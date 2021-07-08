@@ -1,9 +1,12 @@
-package com.galka.controler;
+package com.galka.creator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.galka.exceptions.NoPlayersException;
+import com.galka.exceptions.PlayerExistsExcption;
+import com.galka.exceptions.PlayerNotExistsException;
 import com.galka.game.Game;
 import com.galka.game.Player;
 import org.junit.jupiter.api.Test;
