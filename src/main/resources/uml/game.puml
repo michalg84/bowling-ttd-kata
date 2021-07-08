@@ -1,0 +1,39 @@
+@startuml
+class FrameScore {
+- int firstScore
+- int secondScore
+- TYPE type
++ {static} FrameScore valueOf(int)
++ void addSecondScore(int)
++ int getFirstScore()
++ int getSecondScore()
++ boolean hasNextRoll()
+}
+class Player {
+- String name
+- List<FrameScore> scores
+- int rollsCount
++ void addScore(int)
++ String getName()
++ FrameScore getLastScore()
++ List<FrameScore> getScores()
+~ int getScore()
+}
+class Game <<singleton>> {
+- List<Player> playerList
+- int turnCounter
+- int frameCounter
+~ Player next()
++ void roll(int,Player)
+~ Player currentPlayer()
+}
+enum TYPE <<inner>> {
+        SPARE
+        STRIKE
+        NEXT_ROLL
+        OPEN_FRAME
+}
+FrameScore o-- TYPE
+Game "1 " o-- "1..* " Player
+Player "1 " *-- "0..* " FrameScore
+@enduml
