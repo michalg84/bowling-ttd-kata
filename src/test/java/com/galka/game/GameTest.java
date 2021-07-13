@@ -55,20 +55,11 @@ public class GameTest {
     }
 
     @Test
-    void shouldAddPlayerScoreAfterPlayersRolls() {
-        game.roll(7, player1);
-        game.roll(2, player1);
-        assertThat(player1.getScore()).isEqualTo(9);
-    }
-
-
-    @Test
     void shouldChangePlayerAfterTwoNonSpecialRolls() {
         game.roll(3, player1);
         game.roll(4, player1);
-        assertThat(game.currentPlayer()).isEqualTo(player2);
+        assertThat(game.next()).isEqualTo(player2);
     }
-
 
     @Test
     void shouldChangePlayerAfterFourNonSpecialRolls() {
@@ -76,13 +67,13 @@ public class GameTest {
         game.roll(4, player1);
         game.roll(4, player2);
         game.roll(4, player2);
-        assertThat(game.currentPlayer()).isEqualTo(player1);
+        assertThat(game.next()).isEqualTo(player1);
     }
 
     @Test
     void shouldNotChangePlayerAfterOneNonSpecialRolls() {
         game.roll(3, player1);
-        assertThat(game.currentPlayer()).isEqualTo(player1);
+        assertThat(game.next()).isEqualTo(player1);
     }
 
     @Test
@@ -90,21 +81,38 @@ public class GameTest {
         game.roll(3, player1);
         game.roll(3, player1);
         game.roll(3, player2);
-        assertThat(game.currentPlayer()).isEqualTo(player2);
+        assertThat(game.next()).isEqualTo(player2);
     }
 
     @Test
     void shouldChangePlayerAfterStrike() {
         game.roll(10, player1);
-        assertThat(game.currentPlayer()).isEqualTo(player2);
+        assertThat(game.next()).isEqualTo(player2);
     }
 
-//    @Test
-//    void shouldReturnScoreAfterRoll() {
-//        game.roll(5, player1);
-//        player1.getLastScore()
-//        assertThat(score).isEqualTo(FrameScore.valueOf(5));
-//
-//    }
+    @Test
+    void shouldHaveCorrectTotalWhenFirstScoreIsAdded() {
+        game.roll(1, player1);
+        assertThat(player1.getTotalScore()).isOne();
+    }
+
+
+    @Test
+    void shouldHaveCorrectTotalWhenSecondScoreIsAdded() {
+        game.roll(1, player1);
+        game.roll(3, player1);
+        assertThat(player1.getTotalScore()).isEqualTo(4);
+    }
+
+    @Test
+    void shouldHaveCorrectTotalWhenManyScoresAreAdded() {
+        game.roll(1, player1);
+        game.roll(3, player1);
+        game.roll(3, player1);
+        game.roll(3, player1);
+        game.roll(3, player1);
+        assertThat(player1.getTotalScore()).isEqualTo(13);
+    }
+
 
 }

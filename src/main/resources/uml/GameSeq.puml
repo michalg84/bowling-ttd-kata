@@ -1,0 +1,22 @@
+@startuml
+
+autonumber
+User -> Game : roll(score)
+activate Game
+Game -> Player : current()
+activate Player
+Player -> Game : current || next player
+deactivate Player
+Game -> Player: roll(score, player)
+activate Player
+Player -> FrameScore : addScore(socre)
+activate FrameScore
+FrameScore -> Player : frameScore
+deactivate Player
+deactivate Game
+deactivate FrameScore
+
+Game -> Player : roll()
+
+
+@enduml
